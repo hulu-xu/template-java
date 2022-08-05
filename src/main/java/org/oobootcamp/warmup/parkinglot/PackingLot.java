@@ -17,7 +17,7 @@ public class PackingLot {
     }
 
     public Ticket parking(Car car) {
-        if (! hasSpace()) {
+        if (!hasSpace()) {
             throw new ParkingLotSpaceIsFull();
         }
 

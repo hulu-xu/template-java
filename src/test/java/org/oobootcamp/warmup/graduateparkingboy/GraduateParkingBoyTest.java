@@ -2,11 +2,11 @@ package org.oobootcamp.warmup.graduateparkingboy;
 
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
-import org.oobootcamp.warmup.graduateparkingboy.exception.GraduateParkingBoyAllSpaceIsFull;
 import org.oobootcamp.warmup.parkinglot.Car;
 import org.oobootcamp.warmup.parkinglot.PackingLot;
 import org.oobootcamp.warmup.parkinglot.Ticket;
 import org.oobootcamp.warmup.parkinglot.exception.ParkingLotInvalidTicket;
+import org.oobootcamp.warmup.parkinglot.exception.ParkingLotSpaceIsFull;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -27,24 +27,13 @@ public class GraduateParkingBoyTest {
     }
 
     @Test
-    void should_not_park_when_graduate_parking_boy_parking_given_no_seats() {
-
-        this.graduateParkingBoy.parking(new Car());
-        this.graduateParkingBoy.parking(new Car());
-
-        assertThrows(GraduateParkingBoyAllSpaceIsFull.class, () -> this.graduateParkingBoy.parking(new Car()));
-    }
-
-    @Test
-    void should_park_when_graduate_parking_boy_parking_given_the_first_parking_lot_has_space() {
+    void should_park_when_graduate_parking_boy_parking_given_all_parking_lots_have_space() {
         Car car = new Car();
         Ticket ticket = this.graduateParkingBoy.parking(car);
 
         assertNotNull(ticket);
-
         assertThat(this.packingLotA.pickup(ticket)).isEqualTo(car);
     }
-
     @Test
     void should_park_when_graduate_parking_boy_parking_given_the_first_parking_lot_is_full_and_the_second_parking_lot_has_space() {
         this.graduateParkingBoy.parking(new Car());
@@ -54,6 +43,15 @@ public class GraduateParkingBoyTest {
 
         assertNotNull(ticket);
         assertThat(this.packingLotB.pickup(ticket)).isEqualTo(car);
+    }
+
+    @Test
+    void should_not_park_when_graduate_parking_boy_parking_given_no_seats() {
+
+        this.graduateParkingBoy.parking(new Car());
+        this.graduateParkingBoy.parking(new Car());
+
+        assertThrows(ParkingLotSpaceIsFull.class, () -> this.graduateParkingBoy.parking(new Car()));
     }
 
     @Test

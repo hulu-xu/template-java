@@ -16,13 +16,13 @@ public class SmartParkingBoy  extends ParkingBoy {
     public Ticket parking(Car car) {
         int maxRestSpaceCount = 0;
         int parkingLotPosition = 0;
-        for (PackingLot parkingLot: this.getParkingLots()) {
+        for (PackingLot parkingLot: this.parkingLots) {
             if (parkingLot.restSpaceCount() > maxRestSpaceCount) {
                 maxRestSpaceCount = parkingLot.restSpaceCount();
-                parkingLotPosition = this.getParkingLots().indexOf(parkingLot);
+                parkingLotPosition = this.parkingLots.indexOf(parkingLot);
             }
         }
-        PackingLot packingLot = this.getParkingLots().get(parkingLotPosition);
+        PackingLot packingLot = this.parkingLots.get(parkingLotPosition);
         return packingLot.parking(car);
     }
 }

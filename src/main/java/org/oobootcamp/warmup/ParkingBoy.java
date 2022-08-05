@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ParkingBoy {
-    private final List<PackingLot> parkingLots;
+    protected final List<PackingLot> parkingLots;
 
     public ParkingBoy(ArrayList<PackingLot> packingLots) {
         this.parkingLots = packingLots;
@@ -24,9 +24,5 @@ public abstract class ParkingBoy {
             }
         }
         throw new ParkingLotInvalidTicket();
-    }
-
-    public List<PackingLot> getParkingLots() {
-        return parkingLots;
     }
 }
