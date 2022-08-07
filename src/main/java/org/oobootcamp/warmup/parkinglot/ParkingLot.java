@@ -6,12 +6,12 @@ import org.oobootcamp.warmup.parkinglot.exception.ParkingLotSpaceIsFull;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PackingLot {
+public class ParkingLot {
     private final int capacity;
 
     private final Map<Ticket, Car> ticketCarMap;
 
-    public PackingLot(int capacity) {
+    public ParkingLot(int capacity) {
         this.capacity = capacity;
         this.ticketCarMap = new HashMap<>();
     }
@@ -28,13 +28,13 @@ public class PackingLot {
 
     public Car pickup(Ticket ticket) {
 
-        if (hasTicket(ticket)) {
+        if (hasCar(ticket)) {
             return this.ticketCarMap.remove(ticket);
         }
         throw new ParkingLotInvalidTicket();
     }
 
-    public boolean hasTicket(Ticket ticket) {
+    public boolean hasCar(Ticket ticket) {
         return this.ticketCarMap.containsKey(ticket);
     }
 

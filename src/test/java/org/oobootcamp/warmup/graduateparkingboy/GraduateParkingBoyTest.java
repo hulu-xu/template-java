@@ -3,7 +3,7 @@ package org.oobootcamp.warmup.graduateparkingboy;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 import org.oobootcamp.warmup.parkinglot.Car;
-import org.oobootcamp.warmup.parkinglot.PackingLot;
+import org.oobootcamp.warmup.parkinglot.ParkingLot;
 import org.oobootcamp.warmup.parkinglot.Ticket;
 import org.oobootcamp.warmup.parkinglot.exception.ParkingLotInvalidTicket;
 import org.oobootcamp.warmup.parkinglot.exception.ParkingLotSpaceIsFull;
@@ -15,14 +15,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class GraduateParkingBoyTest {
 
     public GraduateParkingBoy graduateParkingBoy;
-    public PackingLot packingLotA;
-    public PackingLot packingLotB;
+    public ParkingLot parkingLotA;
+    public ParkingLot parkingLotB;
 
     public GraduateParkingBoyTest() {
-        this.packingLotA = new PackingLot(1);
-        this.packingLotB = new PackingLot(1);
+        this.parkingLotA = new ParkingLot(1);
+        this.parkingLotB = new ParkingLot(1);
         this.graduateParkingBoy = new GraduateParkingBoy(
-                Lists.newArrayList(packingLotA, packingLotB));
+                Lists.newArrayList(parkingLotA, parkingLotB));
 
     }
 
@@ -32,7 +32,7 @@ public class GraduateParkingBoyTest {
         Ticket ticket = this.graduateParkingBoy.parking(car);
 
         assertNotNull(ticket);
-        assertThat(this.packingLotA.pickup(ticket)).isEqualTo(car);
+        assertThat(this.parkingLotA.pickup(ticket)).isEqualTo(car);
     }
     @Test
     void should_park_when_graduate_parking_boy_parking_given_the_first_parking_lot_is_full_and_the_second_parking_lot_has_space() {
@@ -42,7 +42,7 @@ public class GraduateParkingBoyTest {
         Ticket ticket = this.graduateParkingBoy.parking(car);
 
         assertNotNull(ticket);
-        assertThat(this.packingLotB.pickup(ticket)).isEqualTo(car);
+        assertThat(this.parkingLotB.pickup(ticket)).isEqualTo(car);
     }
 
     @Test
